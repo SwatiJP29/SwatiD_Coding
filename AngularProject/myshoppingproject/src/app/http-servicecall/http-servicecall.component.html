@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Ad Item</title>
+  <script>
+    $("#editbutton").click(function(){
+        $("#editfrm").toggle();
+    });
+  </script>
   <style>
     body{
       padding: 30px;
@@ -58,9 +63,45 @@
       <button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid" >Add Item </button>
   </form>
   </div>
+  <h1>Edit Item</h1>
+  <div class="container">
+  <div class="jumbotron">
+  <form #editfrm = "ngForm" (ngE)>
+      <!-- <div class="form-group">
+          <label for="name">ID</label>
+          <input type="text"  class="form-control" pattern="[a-zA-Z][a-zA-Z ]+" name="name"  #NameControl="ngModel" ngModel required>
+          
+      </div> -->
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text"  class="form-control" pattern="[a-zA-Z][a-zA-Z ]+" name="name"  #NameControl="ngModel" ngModel required>
+          <div *ngIf="NameControl?.touched && NameControl?.invalid" class="alert alert-danger">
+            <div *ngIf="NameControl.errors?.required">
+              Name is required
+            </div>
+            <div *ngIf="NameControl.errors?.pattern">
+              Please enter a valid Name
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="inputPhoneNumber">Quantity</label>
+          <input type="number" class="form-control"  name="itemnumber"  #ItemNumberControl="ngModel" ngModel required>
+          <div *ngIf="ItemNumberControl?.touched && ItemNumberControl?.invalid" class="alert alert-danger">
+              <div *ngIf="ItemNumberControl.errors?.required">
+                Contact is required
+              </div>
+              <!-- <div *ngIf="ContactControl.errors?.pattern">
+                Please enter a valid contact number
+              </div> -->
+            </div>
+      </div>
+      <button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid" >Add Item </button>
+  </form>
+  </div>
 </div>
 <!-- {{frm.value | json}} -->
-</body>
+
 
 
 
@@ -84,8 +125,8 @@
         <td class="display"><input type="checkbox" name="name1" />&nbsp;</td>
         <td class="display">
             <form name="f2" action="javascript:select();" >
-                <input id="edit" type="submit" name="Edit" value="Edit" />
-                <input id="edit" type="submit" name="Delete" value="Delete" />
+                <input id="editbutton" type="submit" name="Edit" value="Edit" />
+                <input id="deletebutton" type="submit" name="Delete" value="Delete" />
             </form>
         </td>
       </tr>
@@ -93,4 +134,7 @@
     </tbody>
   
   </table>
+  
+</div>
+</body>
   </html>
