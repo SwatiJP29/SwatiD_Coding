@@ -11,6 +11,11 @@ import { EmployeeInfoComponent } from './employee-info/employee-info.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { Routes, RouterModule } from '@angular/router';
 import { EmplistservcomComponent } from './emplistservcom/emplistservcom.component';
+import { CreateemployeeComponent } from './createemployee/createemployee.component';
+import {FormsModule} from '@angular/forms';
+import { HttpServicecallComponent } from './http-servicecall/http-servicecall.component';
+import { HttpClientModule } from '@angular/common/http'
+
 
 const appRoutes:Routes = [
   {path:'home', component:HomeComponent},
@@ -29,12 +34,16 @@ const appRoutes:Routes = [
     EmpPipe,
     EmployeeInfoComponent,
     PageNotFoundComponent,
-    EmplistservcomComponent
+    EmplistservcomComponent,
+    CreateemployeeComponent,
+    HttpServicecallComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    HttpClientModule, 
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
