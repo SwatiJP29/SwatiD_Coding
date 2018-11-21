@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Ad Item</title>
   <script>
-    $("#editbutton").click(function(){
-        $("#editfrm").toggle();
-    });
+    // $('.editform').hide();
+
+    // $('.showform, .editform').click(function(){
+    //   $('.showform, .editform').toggle()}
+      
+    // );
+    
   </script>
   <style>
     body{
@@ -25,33 +30,38 @@
     
   </style>
 </head>
+
 <body>
-    
-  <h1>Add Item</h1>
-  <div class="container">
-  <div class="jumbotron">
-  <form #frm = "ngForm" (ngSubmit)="addItemToJSON(frm)" ngNativeValidate>
-      <!-- <div class="form-group">
+    <div class="container">
+        <div class="jumbotron">
+  
+  
+      <div class="showform">
+        <h1>Add Item</h1>
+        <form #frm="ngForm" id="showform" (ngSubmit)="addItemToJSON(frm)" ngNativeValidate *ngIf="!toggleForm">
+            
+          <!-- <div class="form-group">
           <label for="name">ID</label>
           <input type="text"  class="form-control" pattern="[a-zA-Z][a-zA-Z ]+" name="name"  #NameControl="ngModel" ngModel required>
           
       </div> -->
-      <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text"  class="form-control" pattern="[a-zA-Z][a-zA-Z ]+" name="name"  #NameControl="ngModel" ngModel required>
-          <div *ngIf="NameControl?.touched && NameControl?.invalid" class="alert alert-danger">
-            <div *ngIf="NameControl.errors?.required">
-              Name is required
-            </div>
-            <div *ngIf="NameControl.errors?.pattern">
-              Please enter a valid Name
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" pattern="[a-zA-Z][a-zA-Z ]+" name="name" #NameControl="ngModel"
+              ngModel required>
+            <div *ngIf="NameControl?.touched && NameControl?.invalid" class="alert alert-danger">
+              <div *ngIf="NameControl.errors?.required">
+                Name is required
+              </div>
+              <div *ngIf="NameControl.errors?.pattern">
+                Please enter a valid Name
+              </div>
             </div>
           </div>
-      </div>
-      <div class="form-group">
-          <label for="inputPhoneNumber">Quantity</label>
-          <input type="number" class="form-control"  name="itemnumber"  #ItemNumberControl="ngModel" ngModel required>
-          <div *ngIf="ItemNumberControl?.touched && ItemNumberControl?.invalid" class="alert alert-danger">
+          <div class="form-group">
+            <label for="inputPhoneNumber">Quantity</label>
+            <input type="number" class="form-control" name="itemnumber" #ItemNumberControl="ngModel" ngModel required>
+            <div *ngIf="ItemNumberControl?.touched && ItemNumberControl?.invalid" class="alert alert-danger">
               <div *ngIf="ItemNumberControl.errors?.required">
                 Contact is required
               </div>
@@ -59,82 +69,88 @@
                 Please enter a valid contact number
               </div> -->
             </div>
-      </div>
-      <button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid" >Add Item </button>
-  </form>
-  </div>
-  <h1>Edit Item</h1>
-  <div class="container">
-  <div class="jumbotron">
-  <form #editfrm = "ngForm" (ngE)>
-      <!-- <div class="form-group">
+          </div>
+          <button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid">Add Item </button>
+        </form>
+     
+    <div id="eform">
+    
+    
+        <div class="editform">
+          <form #editfrm="ngForm" *ngIf="toggleForm">
+              <h1>Edit Item</h1>
+            <!-- <div class="form-group">
           <label for="name">ID</label>
           <input type="text"  class="form-control" pattern="[a-zA-Z][a-zA-Z ]+" name="name"  #NameControl="ngModel" ngModel required>
           
       </div> -->
-      <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text"  class="form-control" pattern="[a-zA-Z][a-zA-Z ]+" name="name"  #NameControl="ngModel" ngModel required>
-          <div *ngIf="NameControl?.touched && NameControl?.invalid" class="alert alert-danger">
-            <div *ngIf="NameControl.errors?.required">
-              Name is required
-            </div>
-            <div *ngIf="NameControl.errors?.pattern">
-              Please enter a valid Name
-            </div>
-          </div>
-      </div>
-      <div class="form-group">
-          <label for="inputPhoneNumber">Quantity</label>
-          <input type="number" class="form-control"  name="itemnumber"  #ItemNumberControl="ngModel" ngModel required>
-          <div *ngIf="ItemNumberControl?.touched && ItemNumberControl?.invalid" class="alert alert-danger">
-              <div *ngIf="ItemNumberControl.errors?.required">
-                Contact is required
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" pattern="[a-zA-Z][a-zA-Z ]+" name="name" #NameControl="ngModel"
+                ngModel required>
+              <div *ngIf="NameControl?.touched && NameControl?.invalid" class="alert alert-danger">
+                <div *ngIf="NameControl.errors?.required">
+                  Name is required
+                </div>
+                <div *ngIf="NameControl.errors?.pattern">
+                  Please enter a valid Name
+                </div>
               </div>
-              <!-- <div *ngIf="ContactControl.errors?.pattern">
+            </div>
+            <div class="form-group">
+              <label for="inputPhoneNumber">Quantity</label>
+              <input type="number" class="form-control" name="itemnumber" #ItemNumberControl="ngModel" ngModel required>
+              <div *ngIf="ItemNumberControl?.touched && ItemNumberControl?.invalid" class="alert alert-danger">
+                <div *ngIf="ItemNumberControl.errors?.required">
+                  Contact is required
+                </div>
+                <!-- <div *ngIf="ContactControl.errors?.pattern">
                 Please enter a valid contact number
               </div> -->
+              </div>
             </div>
+            <button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid">Add Item </button>
+          </form>
+        </div>
       </div>
-      <button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid" >Add Item </button>
-  </form>
+    </div>
   </div>
-</div>
-<!-- {{frm.value | json}} -->
+    <!-- {{frm.value | json}} -->
 
 
 
 
 
-<h3>Shopping List</h3>
-<table>
-    
-    <thead class=display>
-      <tr>
-        <th class=display>ID</th>
-        <th class=display>Item Name </th>
-        <th class=display>Item Quantity </th>
-        <th>CheckBox</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let col of cart">
-        <td class="display">{{col.id}}</td>
-        <td class="display">{{col.itemname}}</td>
-        <td class="display">{{col.itemquantity}}</td>
-        <td class="display"><input type="checkbox" name="name1" />&nbsp;</td>
-        <td class="display">
-            <form name="f2" action="javascript:select();" >
-                <input id="editbutton" type="submit" name="Edit" value="Edit" />
-                <input id="deletebutton" type="submit" name="Delete" value="Delete" />
-            </form>
-        </td>
-      </tr>
-  
-    </tbody>
-  
-  </table>
-  
-</div>
+    <h3>Shopping List</h3>
+    <table>
+
+      <thead class=display>
+        <tr>
+          <th class=display>ID</th>
+          <th class=display>Item Name </th>
+          <th class=display>Item Quantity </th>
+          <th>CheckBox</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let col of cart">
+          <td class="display">{{col.id}}</td>
+          <td class="display">{{col.itemname}}</td>
+          <td class="display">{{col.itemquantity}}</td>
+          <td class="display"><input type="checkbox" name="name1" />&nbsp;</td>
+          <td class="display">
+
+            <input id="editbutton" (click)=showEditForm() type="submit" name="Edit" value="Edit" />
+            <input id="deletebutton" type="submit" name="Delete" value="Delete" />
+
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
 </body>
-  </html>
+
+</html>
