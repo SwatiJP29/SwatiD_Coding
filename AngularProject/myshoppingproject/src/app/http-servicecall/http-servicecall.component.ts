@@ -10,6 +10,8 @@ import { Empdata1Service } from '../services/empdata1.service';
 export class HttpServicecallComponent implements OnInit {
   cart : Item[];
   toggleForm: boolean = false;
+  selectedItem: Item;
+  
 
   constructor(private _httpClientService : Empdata1Service) { }
 
@@ -35,8 +37,26 @@ export class HttpServicecallComponent implements OnInit {
     this._httpClientService.additemlist(newitem).subscribe (item => {console.log(item);
     this.getitems()
   })}
+  editForm(editfrm) {
+    let newItem: Item = {
+      id: this.selectedItem.id,
+      itemname: editfrm.value.name,
+      itemquantity: editfrm.value.itemnumber,
+      //itemboughts: this.selectedItem.itemboughts
+    }
+    this._httpClientService.edititemlist(newItem)
 
-  showEditForm(){
+      .subscribe(result => {
+        console.log('original item to be updated with old values' + result);
+        this.getitems();
+        this.toggleForm = !this.toggleForm;
+      })
+
+  }
+
+
+  showEditForm(i){
+    this.selectedItem=i;
     this.toggleForm=true;
   }
 

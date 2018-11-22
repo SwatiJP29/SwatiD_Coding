@@ -17,4 +17,7 @@ export class Empdata1Service {
   additemlist(newitem: Item){
     return this.http.post('http://localhost:3000/items', newitem)
   }
+  edititemlist(newitem: Item){
+    return this.http.put('http://localhost:3000/items', newitem)
+  }
 }
